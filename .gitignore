@@ -3,10 +3,7 @@ Homestead.json
 Homestead.yaml
 *sublime*
 /.idea
-/storage
 /node_modules
 /public/storage
+/storage
 /vendor
-
-
-
