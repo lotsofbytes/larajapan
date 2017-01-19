@@ -25,19 +25,12 @@ SSHを利用しているなら、以下をコマンドラインで実行して�
 
 APP_ENV=local
 APP_KEY=
-
 APP_DEBUG=true
-
 APP_LOG_LEVEL=debug 
-
 DB_CONNECTION=mysql
-
 DB_DATABASE=*****
-
 DB_USERNAME=*****
-
 DB_PASSWORD=*****
-
 MAIL_DRIVER=sendmail
 
 その後、以下を実行して.env内のAPP_KEYを更新します。
