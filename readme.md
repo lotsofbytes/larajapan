@@ -2,7 +2,7 @@
 
 このレポジトリをダウンロードして日本語化されたLaravelのプロジェクトを作成します。手順は以下。
 
-1. レポジトリのインストール
+## レポジトリのインストール
 
 SSHを利用しているなら、以下をコマンドラインで実行してレポジトリをインストールします。
 
@@ -18,7 +18,7 @@ SSHを利用しているなら、以下をコマンドラインで実行して�
 
 <code>chmod -R a+w storage</code>
 
-2. .envの編集
+## .envの編集
 
 .env.example をコピーして、.env　を作成し編集して以下のように設定します。*****の部分を適切な値に変更してください。
 注意：以下の例はmysqlあるいはmariaDBを使用。
@@ -43,7 +43,7 @@ MAIL_DRIVER=sendmail
 
 <code>php artisan key:generate</code>
 
-3. DBを作成
+## DBを作成
 
 .envで指定したDBを作成。
 
@@ -51,7 +51,7 @@ MAIL_DRIVER=sendmail
 
 <code>php artisan migrate</code>
 
-4. ウェブサーバーの立ち上げ
+## ウェブサーバーの立ち上げ
 
 最後に以下を実行して、ウェブサーバーを立ち上げると、
 
