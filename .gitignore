@@ -5,5 +5,4 @@ Homestead.yaml
 /.idea
 /node_modules
 /public/storage
-/storage
 /vendor
