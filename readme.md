@@ -16,9 +16,29 @@ SSHを利用しているなら、以下をコマンドラインで実行して�
 
 <code>composer install</code>
 
+<code>chmod -R a+w storage</code>
+
 2．.envの編集
 
-.env.example をコピーして、.env　を作成します。
+.env.example をコピーして、.env　を作成し編集して以下のように設定します。*****の部分を適切な値に変更してください。
+注意：以下の例はmysqlあるいはmariaDBを使用。
+
+<code>
+APP_ENV=production
+APP_KEY=
+APP_DEBUG=false
+
+DB_CONNECTION=mysql
+DB_DATABASE=*****
+DB_USERNAME=*****
+DB_PASSWORD=*****
+
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_DRIVER=sync
+
+MAIL_DRIVER=sendmail
+</code>
 
 その後、以下を実行します。
 
