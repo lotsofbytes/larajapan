@@ -24,12 +24,19 @@ SSHを利用しているなら、以下をコマンドラインで実行して�
 注意：以下の例はmysqlあるいはmariaDBを使用。
 
 <code>APP_ENV=production</code>
+
 <code>APP_KEY=</code>
+
 <code>APP_DEBUG=false</code>
+
 <code>DB_CONNECTION=mysql</code>
+
 <code>DB_DATABASE=*****</code>
+
 <code>DB_USERNAME=*****</code>
+
 <code>DB_PASSWORD=*****</code>
+
 <code>MAIL_DRIVER=sendmail</code>
 
 その後、以下を実行します。
