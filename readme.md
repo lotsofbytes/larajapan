@@ -1,10 +1,10 @@
-# Laravelのプロジェクトのレポ
+# Laravelのプロジェクトのレポジトリ
 
-このテンプレートを利用して日本語化されたLaravelのプロジェクトを作成します。手順は以下。
+このレポジトリをダウンロードして日本語化されたLaravelのプロジェクトを作成します。手順は以下。
 
-1．レポのインストール
+1．レポジトリのインストール
 
-SSHを設定しているなら、以下をコマンドラインで実行してレポジトリをインストールします。
+SSHを利用しているなら、以下をコマンドラインで実行してレポジトリをインストールします。
 
 <code>git clone git@github.com:lotsofbytes/larajapan.git</code>
 
@@ -31,7 +31,6 @@ SSHを設定しているなら、以下をコマンドラインで実行して�
 <code>echo 'CREATE DATABASE larajapan CHARACTER SET utf8' | mysql -u root -p</code>
 
 <code>php artisan migrate</code>
-
 
 4. ウェブサーバーの立ち上げ
 
