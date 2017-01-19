@@ -23,23 +23,23 @@ SSHを利用しているなら、以下をコマンドラインで実行して�
 .env.example をコピーして、.env　を作成し編集して以下のように設定します。*****の部分を適切な値に変更してください。
 注意：以下の例はmysqlあるいはmariaDBを使用。
 
-<code>APP_ENV=production</code>
+APP_ENV=production
 
-<code>APP_KEY=</code>
+APP_KEY=
 
-<code>APP_DEBUG=false</code>
+APP_DEBUG=false
 
-<code>DB_CONNECTION=mysql</code>
+DB_CONNECTION=mysql
 
-<code>DB_DATABASE=*****</code>
+DB_DATABASE=*****
 
-<code>DB_USERNAME=*****</code>
+DB_USERNAME=*****
 
-<code>DB_PASSWORD=*****</code>
+DB_PASSWORD=*****
 
-<code>MAIL_DRIVER=sendmail</code>
+MAIL_DRIVER=sendmail
 
-その後、以下を実行します。
+その後、以下を実行して.env内のAPP_KEYを更新します。
 
 <code>php artisan key:generate</code>
 
