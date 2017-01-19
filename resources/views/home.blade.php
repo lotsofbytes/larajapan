@@ -8,7 +8,7 @@
                 <div class="panel-heading">ダッシュボード</div>
 
                 <div class="panel-body">
-                    ログインされました！
+                    ログイン成功！
                 </div>
             </div>
         </div>
