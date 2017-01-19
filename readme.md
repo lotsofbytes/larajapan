@@ -23,22 +23,14 @@ SSHを利用しているなら、以下をコマンドラインで実行して�
 .env.example をコピーして、.env　を作成し編集して以下のように設定します。*****の部分を適切な値に変更してください。
 注意：以下の例はmysqlあるいはmariaDBを使用。
 
-<code>
-APP_ENV=production
-APP_KEY=
-APP_DEBUG=false
-
-DB_CONNECTION=mysql
-DB_DATABASE=*****
-DB_USERNAME=*****
-DB_PASSWORD=*****
-
-CACHE_DRIVER=file
-SESSION_DRIVER=file
-QUEUE_DRIVER=sync
-
-MAIL_DRIVER=sendmail
-</code>
+<code>APP_ENV=production</code>
+<code>APP_KEY=</code>
+<code>APP_DEBUG=false</code>
+<code>DB_CONNECTION=mysql</code>
+<code>DB_DATABASE=*****</code>
+<code>DB_USERNAME=*****</code>
+<code>DB_PASSWORD=*****</code>
+<code>MAIL_DRIVER=sendmail</code>
 
 その後、以下を実行します。
 
