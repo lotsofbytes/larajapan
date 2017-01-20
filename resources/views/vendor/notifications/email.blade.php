@@ -60,7 +60,7 @@ $style = [
 ];
 ?>
 
-<?php $fontFamily = 'font-family: Arial, \'Helvetica Neue\', Helvetica, sans-serif;'; ?>
+<?php $fontFamily = 'font-family: \'Lucida Grande\',\'Hiragino Kaku Gothic ProN\', Meiryo, sans-serif;'; ?>
 
 <body style="{{ $style['body'] }}">
     <table width="100%" cellpadding="0" cellspacing="0">
@@ -88,9 +88,9 @@ $style = [
                                                 {{ $greeting }}
                                             @else
                                                 @if ($level == 'error')
-                                                    Whoops!
+                                                    エラーが発生！
                                                 @else
-                                                    Hello!
+                                                    こんにちは！
                                                 @endif
                                             @endif
                                         </h1>
@@ -149,8 +149,7 @@ $style = [
                                                 <tr>
                                                     <td style="{{ $fontFamily }}">
                                                         <p style="{{ $style['paragraph-sub'] }}">
-                                                            If you’re having trouble clicking the "{{ $actionText }}" button,
-                                                            copy and paste the URL below into your web browser:
+                                                            "{{ $actionText }}" ボタンが効かない場合は、ブラウザに以下のアドレスをコピー＆ペーストしてください：
                                                         </p>
 
                                                         <p style="{{ $style['paragraph-sub'] }}">
