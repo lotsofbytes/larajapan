@@ -1,7 +1,8 @@
 /* Base */
 
 body, body *:not(html):not(style):not(br):not(tr):not(code) {
-    font-family: Avenir, Helvetica, sans-serif;
+	/*    font-family: Avenir, Helvetica, sans-serif;*/
+    font-family:Lucida Grande, Hiragino Kaku Gothic ProN, Meiryo, sans-serif;
     box-sizing: border-box;
 }
 
