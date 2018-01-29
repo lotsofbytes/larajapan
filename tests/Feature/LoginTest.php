@@ -20,6 +20,7 @@ class LoginTest extends TestCase
     /** @test */
     public function unauthenticated_user_cannot_view_home()
     {
-        $this->get('home')->assertRedirect('login');
+        $this->get('home')
+        	->assertRedirect('login');
     }
 }
