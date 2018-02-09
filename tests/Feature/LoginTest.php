@@ -33,20 +33,21 @@ class LoginTest extends TestCase
     /** @test */
     public function valid_user_can_login()
     {
+        // ユーザーを1つ作成
         $user = factory(User::class)->create([
             'password'  => bcrypt('test1111')
         ]);
 
-        // まだ、認証されていない
+        // まだ、認証されていないことを確認
         $this->assertFalse(Auth::check());
 
-        // ログイン
+        // ログインを実行
         $response = $this->post('login', [
             'email'    => $user->email,
             'password' => 'test1111'
         ]);
 
-        // 認証されている
+        // 認証されていることを確認
         $this->assertTrue(Auth::check());
 
         // ログイン後にホームページにリダイレクトされるのを確認
@@ -56,11 +57,12 @@ class LoginTest extends TestCase
     /** @test */
     public function invalid_user_cannot_login()
     {
+        // ユーザーを1つ作成
         $user = factory(User::class)->create([
             'password'  => bcrypt('test1111')
         ]);
 
-        // まだ、認証されていない
+        // まだ、認証されていないことを確認
         $this->assertFalse(Auth::check());
 
         // 異なるパスワードでログイン
@@ -78,5 +80,27 @@ class LoginTest extends TestCase
         // エラメッセージを確認
         $this->assertEquals('メールアドレスあるいはパスワードが一致しません',
             session('errors')->first('email'));
+    }
+
+    /** @test */
+    public function logout()
+    {
+        // ユーザーを1つ作成
+        $user = factory(User::class)->create();
+
+        // 認証済み、つまりログイン済みしたことにする
+        $this->actingAs($user);
+
+        // 認証されていること確認
+        $this->assertTrue(Auth::check());
+
+        // ログアウトを実行
+        $response = $this->post('logout');
+
+        // 認証されていない
+        $this->assertFalse(Auth::check());
+
+        // Welcomeページにリダイレクトすることを確認
+        $response->assertRedirect('/');
     }
 }
