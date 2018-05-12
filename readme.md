@@ -1,73 +1,58 @@
-# Laravelの日本語のレポジトリ (Laravel 5.4)
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-このレポジトリをダウンロードして日本語化されたLaravelのプロジェクトを作成します。手順は以下。
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
-## レポジトリのインストール
+## About Laravel
 
-SSHを利用しているなら、以下をコマンドラインで実行してレポジトリをインストールします。
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
-```
-git clone git@github.com:lotsofbytes/larajapan.git
-```
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-あるいは、Httpsを使用するなら、以下を実行します。
+Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
 
-```
-git clone https://github.com/lotsofbytes/larajapan.git
-```
+## Learning Laravel
 
-```
-chmod -R a+w storage
-```
-インストール後は、以下を実行してください。
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
 
-```
-composer install
-```
+If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
 
-## .envの編集
+## Laravel Sponsors
 
-.env.example をコピーして、.env　を作成し編集して以下のように設定します。*****の部分を適切な値に変更してください。
-注意：以下の例はmysqlあるいはmariaDBを使用。
+We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
 
-```
-APP_ENV=local
-APP_KEY=
-APP_DEBUG=true
-APP_LOG_LEVEL=debug
-DB_CONNECTION=mysql
-DB_DATABASE=*****
-DB_USERNAME=*****
-DB_PASSWORD=*****
-MAIL_DRIVER=sendmail
-```
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[British Software Development](https://www.britishsoftware.co)**
+- [Fragrantica](https://www.fragrantica.com)
+- [SOFTonSOFA](https://softonsofa.com/)
+- [User10](https://user10.com)
+- [Soumettre.fr](https://soumettre.fr/)
+- [CodeBrisk](https://codebrisk.com)
+- [1Forge](https://1forge.com)
+- [TECPRESSO](https://tecpresso.co.jp/)
+- [Pulse Storm](http://www.pulsestorm.net/)
+- [Runtime Converter](http://runtimeconverter.com/)
+- [WebL'Agence](https://weblagence.com/)
 
-その後、以下を実行して.env内のAPP_KEYを更新します。
+## Contributing
 
-```
-php artisan key:generate
-```
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## DBを作成
+## Security Vulnerabilities
 
-.envで指定したDBを作成。
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-```
-echo 'CREATE DATABASE larajapan CHARACTER SET utf8' | mysql -u root -p
-```
+## License
 
-```
-php artisan migrate
-```
-
-## ウェブサーバーの立ち上げ
-
-最後に以下を実行して、ウェブサーバーを立ち上げると、
-
-```
-php artisan serve
-```
-
-以下のアドレスでブラウザーからアクセスできます。
-
-http://localhost:8000
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

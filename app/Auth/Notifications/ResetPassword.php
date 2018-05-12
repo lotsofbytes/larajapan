@@ -46,7 +46,7 @@ class ResetPassword extends Notification
     {
         return (new MailMessage)
             ->subject('パスワードリセット')
-			->greeting('パスワードリセット')
+            ->greeting('パスワードリセット')
             ->line('パスワードリセットリンクの送信のリクエストがありました。')
             ->action('リセットパスワード', url(config('app.url').route('password.reset', $this->token, false)))
             ->line('リクエストされていなかったら、無視してください。');

@@ -15,6 +15,15 @@ $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );
 
+// no-dev でエラーにならないように定義
+
+if (!function_exists('debug')) {
+    function debug($value)
+    {
+    }
+}
+
+
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
