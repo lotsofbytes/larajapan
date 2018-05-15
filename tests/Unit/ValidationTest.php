@@ -13,14 +13,17 @@ class ValidationTest extends TestCase
      */
     public function required_age($input, $expected)
     {
-        Validator::extendImplicit('required_age', function ($attribute, $value, $parameters) {
-           return ((strlen($value) > 0) || ((int)$parameters[0] > 0));
+        Validator::extendImplicit('required_age', function ($attribute, $value, $parameters, $validator) {
+            $values = $validator->getData();
+
+            $date_birth = $value;
+            $age_group = $values['age_group'] ?? '';
+
+            return ((strlen($date_birth) > 0) || ((int)$age_group > 0));
         });
 
-        $age_group = $input['age_group'];
-
         $v = Validator::make($input, [
-            'date_birth' => 'required_age:" . $age_group . "|date'
+            'date_birth' => 'required_age:age_group'
         ]);
 
         $this->assertEquals($expected, $v->passes());
@@ -30,7 +33,7 @@ class ValidationTest extends TestCase
     {
         return [
             [['date_birth' => '2018-01-01', 'age_group' => '0'], true],
-            [['date_birth' => '2018-01-45', 'age_group' => '0'], false],
+            [['date_birth' => '2018-01-01'], true],
             [['date_birth' => '', 'age_group' => '5'], true],
             [['date_birth' => '', 'age_group' => '0'], false]
         ];
