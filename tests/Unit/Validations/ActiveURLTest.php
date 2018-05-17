@@ -24,9 +24,10 @@ class ActiveURLTest extends TestCase
     public function provider_validate()
     {
         return [
-            [['url' => 'http://larajapan.com'], true],
+            [['url' => 'https://larajapan.com'], true],
+            [['url' => 'https://www.larajapan.com'], true],
             [['url' => 'larajapan.com'], false],
-            [['url' => 'http://larajpan.com'], false],
+            [['url' => 'https://larajpan.com'], false] // 存在しないドメイン名。プロバイダーによってはtrueとなる場合あり
         ];
     }
 }
