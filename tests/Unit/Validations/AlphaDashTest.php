@@ -5,17 +5,17 @@ namespace Tests\Unit\Validations;
 use Tests\TestCase;
 use Validator;
 
-class AlphaTest extends TestCase
+class AlphaDashTest extends TestCase
 {
     /**
      * @test
 	 * @dataProvider provider_validate
      */
-    public function alpha($input, $expected)
+    public function alpha_dash($input, $expected)
     {
         $v = Validator::make(
             $input,
-            ['login' => 'alpha']
+            ['login' => 'alpha_dash']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -27,9 +27,8 @@ class AlphaTest extends TestCase
             [['login' => null], false],
             [['login' => ''], true],
             [['login' => 'abcd'], true],
-            [['login' => 'abcd_-'], true],
-            [['login' => 'abcd=!'], false],
-            [['login' => '1234'], false],
+            [['login' => 'abcd=+-'], false],
+            [['login' => '1234'], true],
         ];
     }
 }
