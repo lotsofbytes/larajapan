@@ -5,7 +5,7 @@ namespace Tests\Unit\Validations;
 use Tests\TestCase;
 use Validator;
 
-class ActiveURLTest extends TestCase
+class ActiveUrlTest extends TestCase
 {
     /**
      * @test
@@ -24,6 +24,8 @@ class ActiveURLTest extends TestCase
     public function provider_validate()
     {
         return [
+            [['url' => null], false],
+            [['url' => ''], true],
             [['url' => 'https://larajapan.com'], true],
             [['url' => 'https://www.larajapan.com'], true],
             [['url' => 'larajapan.com'], false],

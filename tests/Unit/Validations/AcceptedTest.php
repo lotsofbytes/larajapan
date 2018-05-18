@@ -24,11 +24,13 @@ class AcceptedTest extends TestCase
     public function provider_validate()
     {
         return [
+            [['terms_of_service' => null], false],
+            [['terms_of_service' => ''], false],
             [['terms_of_service' => 'on'], true],
             [['terms_of_service' => '1'], true],
             [['terms_of_service' => 'off'], false],
             [['terms_of_service' => '0'], false],
-            [['terms_of_service' => ''], false],
+
         ];
     }
 }
