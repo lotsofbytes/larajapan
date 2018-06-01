@@ -58,6 +58,9 @@ class LoginTest extends TestCase
         // 認証されていることを確認
         $this->assertTrue(Auth::check());
 
+        // 認証したユーザーを確認
+        $this->assertTrue(Auth::user()->is($user));
+
         // ログイン後にホームページにリダイレクトされるのを確認
         $response->assertRedirect('home');
     }
