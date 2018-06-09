@@ -25,11 +25,19 @@ class AlphaTest extends TestCase
     {
         return [
             [['login' => null], false],
+
             [['login' => ''], true],
+            [['login' => ' '], true], // TrimStringを期待して？
+
             [['login' => 'abcd'], true],
-            [['login' => 'abcd_-'], true],
-            [['login' => 'abcd=!'], false],
-            [['login' => '1234'], false],
+            [['login' => 'ABCD'], true],
+            [['login' => 'ab cd'], false],
+
+            [['login' => '-'], false],
+            [['login' => '_'], false],
+
+            [['login' => '0'], false],
+            [['login' => '1'], false],
         ];
     }
 }
