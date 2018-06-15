@@ -9,7 +9,7 @@ class AlphaTest extends TestCase
 {
     /**
      * @test
-	 * @dataProvider provider_validate
+     * @dataProvider provider_alpha
      */
     public function alpha($input, $expected)
     {
@@ -21,23 +21,22 @@ class AlphaTest extends TestCase
         $this->assertEquals($expected, $v->passes());
     }
 
-    public function provider_validate()
+    public function provider_alpha()
     {
         return [
-            [['login' => null], false],
+            [['login' => null],    false],
+            [['login' => ''],      true],
+            [['login' => ' '],     true],
 
-            [['login' => ''], true],
-            [['login' => ' '], true], // TrimStringを期待して？
-
-            [['login' => 'abcd'], true],
-            [['login' => 'ABCD'], true],
+            [['login' => 'abcd'],  true],
+            [['login' => 'ABCD'],  true],
             [['login' => 'ab cd'], false],
 
-            [['login' => '-'], false],
-            [['login' => '_'], false],
+            [['login' => '-'],     false],
+            [['login' => '_'],     false],
 
-            [['login' => '0'], false],
-            [['login' => '1'], false],
+            [['login' => '0'],     false],
+            [['login' => '1'],     false],
         ];
     }
 }
