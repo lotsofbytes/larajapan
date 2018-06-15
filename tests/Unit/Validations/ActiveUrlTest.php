@@ -9,7 +9,7 @@ class ActiveUrlTest extends TestCase
 {
     /**
      * @test
-	 * @dataProvider provider_validate
+     * @dataProvider provider_active_url
      */
     public function active_url($input, $expected)
     {
@@ -21,15 +21,17 @@ class ActiveUrlTest extends TestCase
         $this->assertEquals($expected, $v->passes());
     }
 
-    public function provider_validate()
+    public function provider_active_url()
     {
         return [
-            [['url' => null], false],
-            [['url' => ''], true],
-            [['url' => 'https://larajapan.com'], true],
+            [['url' => null],                        false],
+            [['url' => ''],                          true],
+            [['url' => ' '],                         true], // space
+
+            [['url' => 'https://larajapan.com'],     true],
             [['url' => 'https://www.larajapan.com'], true],
-            [['url' => 'larajapan.com'], false],
-            [['url' => 'https://larajpan.com'], false] // 存在しないドメイン名。プロバイダーによってはtrueとなる場合あり
+            [['url' => 'larajapan.com'],             false],
+            [['url' => 'https://larajpan.com'],      false] // 存在しないドメイン名。プロバイダーによってはtrueとなる場合あり
         ];
     }
 }
