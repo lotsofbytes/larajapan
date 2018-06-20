@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Validations;
+namespace Tests\Unit\Validations\Accepted;
 
 use Tests\TestCase;
 use Validator;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Validations;
+namespace Tests\Unit\Validations\Alpha;
 
 use Tests\TestCase;
 use Validator;
@@ -26,7 +26,7 @@ class AlphaTest extends TestCase
         return [
             [['login' => null],    false],
             [['login' => ''],      true],
-            [['login' => ' '],     true],
+            [['login' => ' '],     true], // space
 
             [['login' => 'abcd'],  true],
             [['login' => 'ABCD'],  true],

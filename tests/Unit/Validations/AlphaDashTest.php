@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Validations;
+namespace Tests\Unit\Validations\AlphaDash;
 
 use Tests\TestCase;
 use Validator;
@@ -9,7 +9,7 @@ class AlphaDashTest extends TestCase
 {
     /**
      * @test
-	 * @dataProvider provider_validate
+	 * @dataProvider provider_alpha_dash
      */
     public function alpha_dash($input, $expected)
     {
@@ -21,14 +21,22 @@ class AlphaDashTest extends TestCase
         $this->assertEquals($expected, $v->passes());
     }
 
-    public function provider_validate()
+    public function provider_alpha_dash()
     {
         return [
-            [['login' => null], false],
-            [['login' => ''], true],
-            [['login' => 'abcd'], true],
-            [['login' => 'abcd=+-'], false],
-            [['login' => '1234'], true],
+            [['login' => null],    false],
+            [['login' => ''],      true],
+            [['login' => ' '],     true], // space
+
+            [['login' => 'abcd'],  true],
+            [['login' => 'ABCD'],  true],
+            [['login' => 'ab cd'], false],
+
+            [['login' => '-'],     true],
+            [['login' => '_'],     true],
+
+            [['login' => '0'],     true],
+            [['login' => '1'],     true],
         ];
     }
 }
