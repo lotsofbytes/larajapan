@@ -1,27 +1,27 @@
 <?php
 
-namespace Tests\Unit\Validations\ActiveUrl;
+namespace Tests\Unit\Validations\Url;
 
 use Tests\TestCase;
 use Validator;
 
-class ActiveUrlTest extends TestCase
+class UrlTest extends TestCase
 {
     /**
      * @test
-     * @dataProvider provider_active_url
+     * @dataProvider provider_url
      */
-    public function active_url($input, $expected)
+    public function url($input, $expected)
     {
         $v = Validator::make(
             $input,
-            ['field' => 'active_url']
+            ['field' => 'url']
         );
 
         $this->assertEquals($expected, $v->passes());
     }
 
-    public function provider_active_url()
+    public function provider_url()
     {
         return [
             [['field' => null],                        false],
@@ -32,8 +32,7 @@ class ActiveUrlTest extends TestCase
             [['field' => 'https://www.larajapan.com'],     true],
             [['field' => 'larajapan.com'],                 false],
             [['field' => 'https://larajapan.com?foo=bar'], true],
-            [['field' => 'https://fake.larajapan.com'],    false] // 存在しないドメイン名。プロバイダーによってはtrueとなる場合あり
-
+            [['field' => 'https://fake.larajapan.com'],    true],
         ];
     }
 }

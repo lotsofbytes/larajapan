@@ -5,17 +5,17 @@ namespace Tests\Unit\Validations\AlphaNumeric;
 use Tests\TestCase;
 use Validator;
 
-class AlphaNumricTest extends TestCase
+class AlphaNumericTest extends TestCase
 {
     /**
      * @test
 	 * @dataProvider provider_alpha_numeric
      */
-    public function alpha($input, $expected)
+    public function alpha_numeric($input, $expected)
     {
         $v = Validator::make(
             $input,
-            ['login' => 'alpha_num']
+            ['field' => 'alpha_num']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,19 +24,23 @@ class AlphaNumricTest extends TestCase
     public function provider_alpha_numeric()
     {
         return [
-            [['login' => null],    false],
-            [['login' => ''],      true],
-            [['login' => ' '],     true], // space
+            [['field' => null],    false],
+            [['field' => ''],      true],
+            [['field' => ' '],     true], // space
 
-            [['login' => 'abcd'],  true],
-            [['login' => 'ABCD'],  true],
-            [['login' => 'ab cd'], false],
+            [['field' => 'abcd'],  true],
+            [['field' => 'ABCD'],  true],
+            [['field' => 'ab cd'], false],
 
-            [['login' => '-'],     false],
-            [['login' => '_'],     false],
+            [['field' => '-'],     false],
+            [['field' => '_'],     false],
 
-            [['login' => '0'],     true],
-            [['login' => '1'],     true],
+            [['field' => '0'],     true],
+            [['field' => '1'],     true],
+
+            [['field' => 'ログイン'],  true],
+            [['field' => 'ろぐいん'],  true],
+            [['field' => '漢字'],     true],
         ];
     }
 }

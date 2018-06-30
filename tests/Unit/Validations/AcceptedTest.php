@@ -15,7 +15,7 @@ class AcceptedTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['terms_of_service' => 'accepted']
+            ['field' => 'accepted']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,18 +24,18 @@ class AcceptedTest extends TestCase
     public function provider_accepted()
     {
         return [
-            [['terms_of_service' => null],  false],
-            [['terms_of_service' => ''],    false],
-            [['terms_of_service' => ' '],   false], // space
+            [['field' => null],  false],
+            [['field' => ''],    false],
+            [['field' => ' '],   false], // space
 
-            [['terms_of_service' => 'yes'], true],
-            [['terms_of_service' => 'no'],  false],
+            [['field' => 'yes'], true],
+            [['field' => 'no'],  false],
 
-            [['terms_of_service' => 'on'],  true],
-            [['terms_of_service' => 'off'], false],
+            [['field' => 'on'],  true],
+            [['field' => 'off'], false],
 
-            [['terms_of_service' => '1'],   true],
-            [['terms_of_service' => '0'],   false],
+            [['field' => '1'],   true],
+            [['field' => '0'],   false],
         ];
     }
 }
