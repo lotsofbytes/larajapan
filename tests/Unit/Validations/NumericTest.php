@@ -30,11 +30,9 @@ class NumericTest extends TestCase
 
             [['number' => '0'],     true],
             [['number' => '1'],     true],
-
-            [['number' => 0],       true],
-            [['number' => 1],       true],
-            [['number' => -1],      true],
-            [['number' => 1.01],    true],
+            [['number' => '0001'],  true], // integerではfalse
+            [['number' => '-1'],    true],
+            [['number' => '1.1'],   true],
 
             [['number' => 'abcd'],  false],
         ];
