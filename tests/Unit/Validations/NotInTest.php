@@ -15,7 +15,7 @@ class NotInTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'not_in:a']
+            ['field' => 'not_in:a,b']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -29,7 +29,7 @@ class NotInTest extends TestCase
             [['field' => ' '],  true], // space
 
             [['field' => 'a'],  false],
-            [['field' => 'b'],  true],
+            [['field' => 'c'],  true],
         ];
     }
 }

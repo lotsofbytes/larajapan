@@ -15,7 +15,7 @@ class InTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'in:a']
+            ['field' => 'in:a,b']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -29,7 +29,7 @@ class InTest extends TestCase
             [['field' => ' '],  true], // space
 
             [['field' => 'a'],  true],
-            [['field' => 'b'],  false],
+            [['field' => 'c'],  false],
         ];
     }
 }
