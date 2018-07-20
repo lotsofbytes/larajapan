@@ -28,8 +28,20 @@ class ConfirmedTest extends TestCase
             [['password' => ''],      true],
             [['password' => ' '],     true], // space
 
-            [['password' => 'pass', 'password_confirmation' => 'pass'],  true],
-            [['password' => 'pass', 'password_confirmation' => 'pass2'], false],
+            [
+                [
+                    'password' => 'パスワード',
+                    'password_confirmation' => 'パスワード'
+                ],
+                true
+            ],
+            [
+                [
+                    'password' => 'パスワード',
+                    'password_confirmation' => '違うパスワード'
+                ],
+                false
+            ],
         ];
     }
 }

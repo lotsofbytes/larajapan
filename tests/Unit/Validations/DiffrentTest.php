@@ -28,8 +28,20 @@ class DifferentTest extends TestCase
             [['field' => ''],      true],
             [['field' => ' '],     true], // space
 
-            [['field' => 'foo', 'field2' => 'not foo'],  true],
-            [['field' => 'foo', 'field2' => 'foo'],      false],
+            [
+                [
+                    'field'  => '同じ',
+                    'field2' => '違う'
+                ],
+                true
+            ],
+            [
+                [
+                    'field'  => '同じ',
+                    'field2' => '同じ'
+                ],
+                false
+            ],
         ];
     }
 }

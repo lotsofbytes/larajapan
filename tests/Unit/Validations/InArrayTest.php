@@ -1,44 +1,44 @@
 <?php
 
-namespace Tests\Unit\Validations\Same;
+namespace Tests\Unit\Validations\InArray;
 
 use Tests\TestCase;
 use Validator;
 
-class SameTest extends TestCase
+class InArrayTest extends TestCase
 {
     /**
      * @test
-	 * @dataProvider provider_same
+	 * @dataProvider provider_in_array
      */
-    public function same($input, $expected)
+    public function in_array($input, $expected)
     {
         $v = Validator::make(
             $input,
-            ['field' => 'same:field2']
+            ['field' => 'in_array:field2.*']
         );
 
         $this->assertEquals($expected, $v->passes());
     }
 
-    public function provider_same()
+    public function provider_in_array()
     {
         return [
-            [['field' => null],    true],
+            [['field' => null],    false],
             [['field' => ''],      true],
             [['field' => ' '],     true], // space
 
             [
                 [
-                    'field'  => '同じ',
-                    'field2' => '同じ'
+                    'field'  => '犬',
+                    'field2' => ['犬', '猫']
                 ],
                 true
             ],
             [
                 [
-                    'field'  => '同じ',
-                    'field2' => '違う'
+                    'field'  => '狸',
+                    'field2' => ['犬', '猫']
                 ],
                 false
             ],
