@@ -15,7 +15,7 @@ class DistinctTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field.*' => 'distinct']
+            ['field.*' => 'distinct'] // fieldではエラー。*が必要。
         );
 
         $this->assertEquals($expected, $v->passes());

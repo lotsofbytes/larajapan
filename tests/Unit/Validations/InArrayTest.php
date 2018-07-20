@@ -15,7 +15,7 @@ class InArrayTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'in_array:field2.*']
+            ['field' => 'in_array:field2.*'] // field2ではエラーとなる。*が必要。
         );
 
         $this->assertEquals($expected, $v->passes());
