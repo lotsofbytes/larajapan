@@ -15,7 +15,7 @@ class PresentTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'present']
+            ['field' => 'present|string']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,14 +24,48 @@ class PresentTest extends TestCase
     public function provider_present()
     {
         return [
-            [['field' => null],    true],
+            // 'field'の項目がある
+            [['field' => null],    false],
             [['field' => ''],      true],
             [['field' => ' '],     true], // space
 
-            [['field'  => '値がある'], true],
+            [['field' => '値がある'], true],
+            [['field' => '1234'], true],
+            [['field' => 1234], false],
 
             // 'field'の項目はない
             [['field2' => '値がある'], false],
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider provider_without_present
+     */
+    public function without_present($input, $expected)
+    {
+        $v = Validator::make(
+            $input,
+            ['field' => 'string']
+        );
+
+        $this->assertEquals($expected, $v->passes());
+    }
+
+    public function provider_without_present()
+    {
+        return [
+            // 'field'の項目がある
+            [['field' => null],    false],
+            [['field' => ''],      true],
+            [['field' => ' '],     true], // space
+
+            [['field' => '値がある'], true],
+            [['field' => '1234'], true],
+            [['field' => 1234], false],
+
+            // 'field'の項目はない
+            [['field2' => '値がある'], true], // ここが上と違う
         ];
     }
 }
