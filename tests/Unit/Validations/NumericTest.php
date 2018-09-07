@@ -35,6 +35,12 @@ class NumericTest extends TestCase
             [['number' => '1.1'],   true],
 
             [['number' => 'abcd'],  false],
+
+            // 文字列ではない
+            [['number' => 0],     true],
+            [['number' => 1],     true],
+            [['number' => -1],    true],
+            [['number' => 1.1],   true],
         ];
     }
 }

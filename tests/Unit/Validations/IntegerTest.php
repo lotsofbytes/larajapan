@@ -35,6 +35,13 @@ class IntegerTest extends TestCase
             [['quantity' => 'abcd'],  false],
             [['quantity' => '0001'],  false], // numericならtrue
             [['quantity' => '1.1'],   false],
+
+            // 文字列ではない
+            [['quantity' => 0],     true],
+            [['quantity' => 1],     true],
+            [['quantity' => -1],    true],
+
+            [['quantity' => 1.1],   false],
         ];
     }
 }
