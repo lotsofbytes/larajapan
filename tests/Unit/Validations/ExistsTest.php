@@ -26,7 +26,7 @@ class ExistsTest extends TestCase
 
         $v = Validator::make(
             $input,
-            ['email' => 'exists:users,email']
+            ['email' => 'required|exists:users,email']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -37,13 +37,9 @@ class ExistsTest extends TestCase
     public function provider_exists()
     {
         return [
-            [['email' => null],    false],
-            [['email' => ''],      true],
-            [['email' => ' '],     true], // space
-
             [['email' => 'test@example.com'],    true],
-            [['email' => 'test2@example.com'],   false],
 
+            [['email' => 'test2@example.com'],   false],
         ];
     }
 }

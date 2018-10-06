@@ -27,7 +27,7 @@ class UniqueTest extends TestCase
 
         $v = Validator::make(
             $input,
-            ['email' => 'unique:users,email']
+            ['email' => 'required|unique:users,email']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -38,13 +38,9 @@ class UniqueTest extends TestCase
     public function provider_unique()
     {
         return [
-            [['email' => null],    true],
-            [['email' => ''],      true],
-            [['email' => ' '],     true], // space
-
             [['email' => 'test@example.com'],    false],
-            [['email' => 'test2@example.com'],   true],
 
+            [['email' => 'test2@example.com'],   true],
         ];
     }
 
@@ -63,7 +59,7 @@ class UniqueTest extends TestCase
 
         $v = Validator::make(
             $input,
-            ['email' => 'unique:users,email,' . $user->email . ',email']
+            ['email' => 'required|unique:users,email,' . $user->email . ',email']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -86,7 +82,12 @@ class UniqueTest extends TestCase
 
         $v = Validator::make(
             $input,
-            ['email' => Rule::unique('users')->ignore($user->email, 'email')]
+            [
+                'email' => [
+                    'required',
+                    Rule::unique('users')->ignore($user->email, 'email')
+                ]
+            ]
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -97,13 +98,8 @@ class UniqueTest extends TestCase
     public function provider_uniqueIgnore()
     {
         return [
-            [['email' => null],    true],
-            [['email' => ''],      true],
-            [['email' => ' '],     true], // space
-
             [['email' => 'test@example.com'],    true],
             [['email' => 'test2@example.com'],   true],
-
         ];
     }
 
