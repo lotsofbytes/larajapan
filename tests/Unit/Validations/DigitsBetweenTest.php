@@ -15,7 +15,7 @@ class DigitsBetweenTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'digits_between:3,4']
+            ['field' => 'required|digits_between:3,4']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,15 +24,11 @@ class DigitsBetweenTest extends TestCase
     public function provider_digits_between()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
-
-            [['field' => '00'],    false],
             [['field' => '000'],   true],
             [['field' => '0000'],  true],
-            [['field' => '00000'], false],
 
+            [['field' => '00'],    false],
+            [['field' => '00000'], false],
             [['field' => 'abcd'],  false],
         ];
     }

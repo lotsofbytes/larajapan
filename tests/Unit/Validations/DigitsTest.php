@@ -15,7 +15,7 @@ class DigitsTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'digits:4']
+            ['field' => 'required|digits:4']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,14 +24,10 @@ class DigitsTest extends TestCase
     public function provider_digits()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
+            [['field' => '0000'],  true],
 
             [['field' => '000'],   false],
-            [['field' => '0000'],  true],
             [['field' => '00000'], false],
-
             [['field' => 'abcd'],  false],
         ];
     }

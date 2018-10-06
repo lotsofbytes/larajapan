@@ -15,7 +15,7 @@ class RegexTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => ['regex:/^([a-z]+)$/']]
+            ['field' => 'required|regex:/^([a-z]+)$/']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,11 +24,8 @@ class RegexTest extends TestCase
     public function provider_regex()
     {
         return [
-            [['field' => null], false],
-            [['field' => ''],   true],
-            [['field' => ' '],  true], // space
-
             [['field' => 'abcd'],  true],
+
             [['field' => 'ABCD'],  false],
             [['field' => ' abcd'], false],
         ];

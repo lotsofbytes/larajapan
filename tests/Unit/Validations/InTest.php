@@ -15,7 +15,7 @@ class InTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'in:a,b']
+            ['field' => 'required|in:a,b']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,11 +24,8 @@ class InTest extends TestCase
     public function provider_in()
     {
         return [
-            [['field' => null], false],
-            [['field' => ''],   true],
-            [['field' => ' '],  true], // space
-
             [['field' => 'a'],  true],
+
             [['field' => 'c'],  false],
         ];
     }

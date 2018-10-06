@@ -15,7 +15,7 @@ class BetweenTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'between:3,4']
+            ['field' => 'required|between:3,4']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,21 +24,19 @@ class BetweenTest extends TestCase
     public function provider_between()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
-
             // 文字列なら長さ
-            [['field' => '00'],    false],
             [['field' => '000'],   true],
             [['field' => '0000'],  true],
-            [['field' => '00000'], false],
             [['field' => 'abcd'],  true],
 
+            [['field' => '00'],    false],
+            [['field' => '00000'], false],
+
             // 配列なら個数
-            [['field' => ['a', 'b']],                false],
             [['field' => ['a', 'b', 'c']],           true],
             [['field' => ['a', 'b', 'c', 'd']],      true],
+
+            [['field' => ['a', 'b']],                false],
             [['field' => ['a', 'b', 'c', 'd', 'e']], false],
         ];
     }
@@ -51,7 +49,7 @@ class BetweenTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'numeric|between:3,4'] // numericが必要
+            ['field' => 'required|numeric|between:3,4'] // numericが必要
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -60,16 +58,13 @@ class BetweenTest extends TestCase
     public function provider_between_numeric()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
-
             // 数字なら整数
-            [['field' => '2'],     false],
             [['field' => '3'],     true],
             [['field' => '4'],     true],
             [['field' => '0004'],  true],
             [['field' => '3.9'],   true],
+
+            [['field' => '2'],     false],
             [['field' => '4.9'],   false]
         ];
     }

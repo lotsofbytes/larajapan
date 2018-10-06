@@ -15,7 +15,7 @@ class NotInTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'not_in:a,b']
+            ['field' => 'required|not_in:a,b']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,11 +24,8 @@ class NotInTest extends TestCase
     public function provider_not_in()
     {
         return [
-            [['field' => null], true],
-            [['field' => ''],   true],
-            [['field' => ' '],  true], // space
-
             [['field' => 'a'],  false],
+
             [['field' => 'c'],  true],
         ];
     }
