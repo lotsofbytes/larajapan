@@ -15,7 +15,7 @@ class DateFormatTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'date_format:Y-m-d']
+            ['field' => 'required|date|date_format:Y-m-d']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,11 +24,8 @@ class DateFormatTest extends TestCase
     public function provider_date_format()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
-
             [['field' => '2018-01-01'],  true],
+
             [['field' => '1/1/18'],  false],
         ];
     }

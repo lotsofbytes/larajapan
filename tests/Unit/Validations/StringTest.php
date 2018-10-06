@@ -15,7 +15,7 @@ class StringTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['string' => 'string']
+            ['string' => 'required|string']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,17 +24,16 @@ class StringTest extends TestCase
     public function provider_string()
     {
         return [
-            [['string' => null],    false],
-            [['string' => ''],      true],
-            [['string' => ' '],     true], // space
-
+            // 文字列
             [['string' => 'abcd'],  true],
             [['string' => '0'],     true],
             [['string' => '1'],     true],
+            [['string' => 'true'],  true],
+            [['string' => 'false'], true],
 
+            // 文字列でない
             [['string' => 0],       false],
             [['string' => 1],       false],
-
             [['string' => true],    false],
             [['string' => false],   false],
         ];

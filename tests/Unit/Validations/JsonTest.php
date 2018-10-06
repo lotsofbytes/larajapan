@@ -15,7 +15,7 @@ class JsonTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['values' => 'json']
+            ['values' => 'required|json']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,11 +24,7 @@ class JsonTest extends TestCase
     public function provider_json()
     {
         return [
-            [['values' => null],    false],
-            [['values' => ''],      true],
-            [['values' => ' '],     true], // space
-
-            [['values' => '{}'],      true],
+            [['values' => '{}'],      true], // 空でもrequiredでOK
             [['values' => '{"a":1}'], true],
 
             [['values' => 'abcd'],  false],

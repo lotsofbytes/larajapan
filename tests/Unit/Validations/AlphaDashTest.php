@@ -15,7 +15,7 @@ class AlphaDashTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'alpha_dash']
+            ['field' => 'required|alpha_dash']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,23 +24,17 @@ class AlphaDashTest extends TestCase
     public function provider_alpha_dash()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
+            [['field' => 'abcd'],       true],
+            [['field' => 'ABCD'],       true],
+            [['field' => '-'],          true],
+            [['field' => '_'],          true],
+            [['field' => '0'],          true],
+            [['field' => '1'],          true],
+            [['field' => 'ログイン'],    true],
+            [['field' => 'ろぐいん'],    true],
+            [['field' => '漢字'],       true],
 
-            [['field' => 'abcd'],  true],
-            [['field' => 'ABCD'],  true],
             [['field' => 'ab cd'], false],
-
-            [['field' => '-'],     true],
-            [['field' => '_'],     true],
-
-            [['field' => '0'],     true],
-            [['field' => '1'],     true],
-
-            [['field' => 'ログイン'],  true],
-            [['field' => 'ろぐいん'],  true],
-            [['field' => '漢字'],     true],
         ];
     }
 }

@@ -15,7 +15,7 @@ class ArrayTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['values' => 'array']
+            ['values' => 'required|array']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,14 +24,13 @@ class ArrayTest extends TestCase
     public function provider_array()
     {
         return [
-            [['values' => null],    false],
-            [['values' => ''],      true],
-            [['values' => ' '],     true], // space
-
-            [['values' => []],        true],
+            // 配列
             [['values' => [1]],       true],
             [['values' => ['a','b']], true],
 
+            [['values' => []],        false], // arrayでなくrequiredのため
+
+            // 文字列
             [['values' => '[1]'],   false],
             [['values' => 'abcd'],  false],
         ];

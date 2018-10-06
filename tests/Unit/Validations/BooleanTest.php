@@ -15,7 +15,7 @@ class BooleanTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['flag' => 'boolean']
+            ['flag' => 'required|boolean']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,22 +24,19 @@ class BooleanTest extends TestCase
     public function provider_boolean()
     {
         return [
-            [['flag' => null],    false],
-            [['flag' => ''],      true],
-            [['flag' => ' '],     true], // space
-
-            [['flag' => true],    true],
-            [['flag' => false],   true],
+            // 文字列
+            [['flag' => '1'],     true],
+            [['flag' => '0'],     true],
 
             [['flag' => 'true'],  false],
             [['flag' => 'false'], false],
 
+            // 文字列でない
             [['flag' => 1],       true],
             [['flag' => 0],       true],
 
-            [['flag' => '1'],     true],
-            [['flag' => '0'],     true],
-
+            [['flag' => true],    true],
+            [['flag' => false],   true],
         ];
     }
 }

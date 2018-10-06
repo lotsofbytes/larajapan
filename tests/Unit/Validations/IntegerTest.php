@@ -15,7 +15,7 @@ class IntegerTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['quantity' => 'integer']
+            ['quantity' => 'required|integer']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,10 +24,7 @@ class IntegerTest extends TestCase
     public function provider_integer()
     {
         return [
-            [['quantity' => null],    false],
-            [['quantity' => ''],      true],
-            [['quantity' => ' '],     true], // space
-
+            // 文字列
             [['quantity' => '0'],     true],
             [['quantity' => '1'],     true],
             [['quantity' => '-1'],    true],
@@ -36,7 +33,7 @@ class IntegerTest extends TestCase
             [['quantity' => '0001'],  false], // numericならtrue
             [['quantity' => '1.1'],   false],
 
-            // 文字列ではない
+            // 文字列でない
             [['quantity' => 0],     true],
             [['quantity' => 1],     true],
             [['quantity' => -1],    true],

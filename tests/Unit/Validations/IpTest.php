@@ -15,7 +15,7 @@ class IpTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'ip']
+            ['field' => 'required|ip']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,14 +24,10 @@ class IpTest extends TestCase
     public function provider_ip()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
-
             [['field' => '192'],   false],
 
-            [['field' => '192.168.0.1'],   true],
-            [['field' => '2001:db8:0:1234:0:567:8:1'],   true],
+            [['field' => '192.168.0.1'],                 true], // ip4
+            [['field' => '2001:db8:0:1234:0:567:8:1'],   true], // ip6
         ];
     }
 
@@ -43,7 +39,7 @@ class IpTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'ipv4']
+            ['field' => 'required|ipv4']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -52,14 +48,10 @@ class IpTest extends TestCase
     public function provider_ipv4()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
-
             [['field' => '192'],   false],
 
-            [['field' => '192.168.0.1'],   true],
-            [['field' => '2001:db8:0:1234:0:567:8:1'],   false],
+            [['field' => '192.168.0.1'],                 true],  // ip4
+            [['field' => '2001:db8:0:1234:0:567:8:1'],   false], // ip6
         ];
     }
 
@@ -71,7 +63,7 @@ class IpTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'ipv6']
+            ['field' => 'required|ipv6']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -80,14 +72,10 @@ class IpTest extends TestCase
     public function provider_ipv6()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
-
             [['field' => '192'],   false],
 
-            [['field' => '192.168.0.1'],   false],
-            [['field' => '2001:db8:0:1234:0:567:8:1'],   true],
+            [['field' => '192.168.0.1'],                false], // ip4
+            [['field' => '2001:db8:0:1234:0:567:8:1'],   true], // ip6
         ];
     }
 

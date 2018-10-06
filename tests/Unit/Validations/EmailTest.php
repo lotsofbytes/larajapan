@@ -15,7 +15,7 @@ class EmailTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'email']
+            ['field' => 'required|email']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,10 +24,6 @@ class EmailTest extends TestCase
     public function provider_email()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
-
             [['field' => 'example.com'],         false],
 
             [['field' => 'test@example.com'],    true],

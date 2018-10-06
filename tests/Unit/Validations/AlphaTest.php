@@ -15,7 +15,7 @@ class AlphaTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'alpha']
+            ['field' => 'required|alpha']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,23 +24,17 @@ class AlphaTest extends TestCase
     public function provider_alpha()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
+            [['field' => 'abcd'],       true],
+            [['field' => 'ABCD'],       true],
+            [['field' => 'ログイン'],    true],
+            [['field' => 'ろぐいん'],    true],
+            [['field' => '漢字'],       true],
 
-            [['field' => 'abcd'],  true],
-            [['field' => 'ABCD'],  true],
             [['field' => 'ab cd'], false],
-
             [['field' => '-'],     false],
             [['field' => '_'],     false],
-
             [['field' => '0'],     false],
             [['field' => '1'],     false],
-
-            [['field' => 'ログイン'],  true],
-            [['field' => 'ろぐいん'],  true],
-            [['field' => '漢字'],     true],
         ];
     }
 }

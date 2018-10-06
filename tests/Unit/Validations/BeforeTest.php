@@ -15,7 +15,7 @@ class BeforeTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'before:2018-01-01']
+            ['field' => 'required|date|before:2018-01-01']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,17 +24,13 @@ class BeforeTest extends TestCase
     public function provider_before()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
+            [['field' => '2017-12-31'], true],
+            [['field' => '12/31/17'],   true],
 
-            [['field' => '2018-01-02'],  false],
-            [['field' => '2018-01-01'],  false],
-            [['field' => '2017-12-31'],  true],
-
-            [['field' => '1/2/18'],  false],
-            [['field' => '1/1/18'],  false],
-            [['field' => '12/31/17'],  true],
+            [['field' => '2018-01-02'], false],
+            [['field' => '2018-01-01'], false],
+            [['field' => '1/2/18'],     false],
+            [['field' => '1/1/18'],     false],
         ];
     }
 }

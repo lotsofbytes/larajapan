@@ -15,7 +15,7 @@ class TimezoneTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'timezone']
+            ['field' => 'required|timezone']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,13 +24,10 @@ class TimezoneTest extends TestCase
     public function provider_timezone()
     {
         return [
-            [['field' => null],            false],
-            [['field' => ''],              true],
-            [['field' => ' '],             true], // space
-
             [['field' => 'Japan'],         true],
             [['field' => 'Asia/Tokyo'],    true],
-            [['field' => 'Asia/Osaka'],    false],
+
+            [['field' => 'Asia/Osaka'],    false], // 存在しない
         ];
     }
 }

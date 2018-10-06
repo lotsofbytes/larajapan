@@ -15,7 +15,7 @@ class UrlTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'url']
+            ['field' => 'required|url']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,15 +24,12 @@ class UrlTest extends TestCase
     public function provider_url()
     {
         return [
-            [['field' => null],                        false],
-            [['field' => ''],                          true],
-            [['field' => ' '],                         true], // space
-
             [['field' => 'https://larajapan.com'],         true],
             [['field' => 'https://www.larajapan.com'],     true],
-            [['field' => 'larajapan.com'],                 false],
             [['field' => 'https://larajapan.com?foo=bar'], true],
             [['field' => 'https://fake.larajapan.com'],    true],
+
+            [['field' => 'larajapan.com'],                 false], // httpsがない
         ];
     }
 }

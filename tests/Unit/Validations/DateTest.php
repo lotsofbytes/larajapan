@@ -15,7 +15,7 @@ class DateTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'date']
+            ['field' => 'required|date']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,16 +24,12 @@ class DateTest extends TestCase
     public function provider_date()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
+            [['field' => '10/09/18'],           true], // MM/DD/YY
+            [['field' => '2018-09-10'],         true],
+            [['field' => '10 September 2018'],  true],
+            [['field' => 'September 2018'],     true],
 
-            [['field' => '10/09/18'],  true], // MM/DD/YY
-            [['field' => '2018-09-10'],  true],
-            [['field' => '10 September 2018'], true],
-
-            [['field' => 'September 2018'], true],
-            [['field' => 'now'],  false],
+            [['field' => 'now'],    false],
             [['field' => '+1 day'], false],
         ];
     }

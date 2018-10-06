@@ -15,7 +15,7 @@ class NumericTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['number' => 'numeric']
+            ['number' => 'required|numeric']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,10 +24,7 @@ class NumericTest extends TestCase
     public function provider_numeric()
     {
         return [
-            [['number' => null],    false],
-            [['number' => ''],      true],
-            [['number' => ' '],     true], // space
-
+            // 文字列
             [['number' => '0'],     true],
             [['number' => '1'],     true],
             [['number' => '0001'],  true], // integerではfalse
