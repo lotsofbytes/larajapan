@@ -15,7 +15,7 @@ class SameTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'same:field2']
+            ['field' => 'required|same:field2']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,10 +24,6 @@ class SameTest extends TestCase
     public function provider_same()
     {
         return [
-            [['field' => null],    true],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
-
             [
                 [
                     'field'  => '同じ',

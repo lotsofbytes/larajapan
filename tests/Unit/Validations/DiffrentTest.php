@@ -15,7 +15,7 @@ class DifferentTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['field' => 'different:field2']
+            ['field' => 'required|different:field2']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,10 +24,6 @@ class DifferentTest extends TestCase
     public function provider_different()
     {
         return [
-            [['field' => null],    false],
-            [['field' => ''],      true],
-            [['field' => ' '],     true], // space
-
             [
                 [
                     'field'  => '同じ',

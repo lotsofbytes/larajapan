@@ -15,7 +15,7 @@ class ConfirmedTest extends TestCase
     {
         $v = Validator::make(
             $input,
-            ['password' => 'confirmed']
+            ['password' => 'required|confirmed']
         );
 
         $this->assertEquals($expected, $v->passes());
@@ -24,10 +24,6 @@ class ConfirmedTest extends TestCase
     public function provider_confirmed()
     {
         return [
-            [['password' => null],    true],
-            [['password' => ''],      true],
-            [['password' => ' '],     true], // space
-
             [
                 [
                     'password' => 'パスワード',
