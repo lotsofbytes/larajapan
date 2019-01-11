@@ -10,8 +10,10 @@ class Address extends Model
         'address'
     ];
 
+/*
     public function user()
     {
         return $this->belongsTo('App\User');
     }
+*/
 }
