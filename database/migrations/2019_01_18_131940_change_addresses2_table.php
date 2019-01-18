@@ -14,8 +14,9 @@ class ChangeAddresses2Table extends Migration
     public function up()
     {
         Schema::table('addresses', function (Blueprint $table) {
-            $table->dropIndex('addresses_user_id_index');
             $table->string('type')->after('user_id');
+
+            $table->dropIndex('addresses_user_id_index');
             $table->unique(['user_id','type']);
         });
     }
@@ -28,7 +29,9 @@ class ChangeAddresses2Table extends Migration
     public function down()
     {
         Schema::table('addresses', function (Blueprint $table) {
-            //
+            $table->dropUnique('addresses_user_id_type_unique');
+            $table->dropColumn('type');
+            $table->index('user_id');
         });
     }
 }
